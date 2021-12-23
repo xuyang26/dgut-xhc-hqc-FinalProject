@@ -293,7 +293,7 @@ class CardPredictor:
 				area_width, area_height = area_height, area_width
 			wh_ratio = area_width / area_height
 			#print(wh_ratio)
-			#要求矩形区域长宽比在2到5.5之间，2到5.5是车牌的长宽比，其余的矩形排除出来8
+			#要求矩形区域长宽比在2到5.5之间，2到5.5是车牌的长宽比，其余的矩形排除
 			if wh_ratio > 2 and wh_ratio < 5.5:
 				car_contours.append(rect)
 				box = cv2.boxPoints(rect)
