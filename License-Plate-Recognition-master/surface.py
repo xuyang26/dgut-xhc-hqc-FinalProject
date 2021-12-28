@@ -31,7 +31,7 @@ class Surface(ttk.Frame):
 		frame_right1.pack(side=TOP,expand=1,fill=tk.Y)
 		frame_right2.pack(side=TOP,expand=0)
 		ttk.Label(frame_left, text='原图：').pack(anchor="nw") 
-		ttk.Label(frame_right1, text='车牌位置：').grid(column=0, row=0, sticky=tk.W)
+		ttk.Label(frame_right1, text='车牌：').grid(column=0, row=0, sticky=tk.W)
 		
 		from_pic_ctl = ttk.Button(frame_right2, text="来自图片", width=20, command=self.from_pic)
 		self.image_ctl = ttk.Label(frame_left)
@@ -39,7 +39,7 @@ class Surface(ttk.Frame):
 		
 		self.roi_ctl = ttk.Label(frame_right1)
 		self.roi_ctl.grid(column=0, row=1, sticky=tk.W)
-		ttk.Label(frame_right1, text='识别结果：').grid(column=0, row=2, sticky=tk.W)
+		ttk.Label(frame_right1, text='识别出的车牌：').grid(column=0, row=2, sticky=tk.W)
 		self.r_ctl = ttk.Label(frame_right1, text="")
 		self.r_ctl.grid(column=0, row=3, sticky=tk.W)
 		self.color_ctl = ttk.Label(frame_right1, text="", width="20")
@@ -106,20 +106,7 @@ class Surface(ttk.Frame):
 			#r, roi, color = self.predictor.predict(img_bgr, 1)
 			self.show_roi(r, roi, color)
 
-	@staticmethod
-	def vedio_thread(self):
-		self.thread_run = True
-		predict_time = time.time()
-		while self.thread_run:
-			_, img_bgr = self.camera.read()
-			self.imgtk = self.get_imgtk(img_bgr)
-			self.image_ctl.configure(image=self.imgtk)
-			if time.time() - predict_time > 2:
-				r, roi, color = self.predictor.predict(img_bgr)
-				self.show_roi(r, roi, color)
-				predict_time = time.time()
-		print("end")
-		
+
 		
 def close_window():
 	print("destroy")
