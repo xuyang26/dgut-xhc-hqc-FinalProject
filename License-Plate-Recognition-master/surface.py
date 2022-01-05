@@ -6,7 +6,7 @@ import cv2
 from PIL import Image, ImageTk
 import threading
 import time
-
+import datetime
 
 
 class Surface(ttk.Frame):
@@ -117,9 +117,17 @@ def close_window():
 	
 	
 if __name__ == '__main__':
+
+
+	starttime = datetime.datetime.now()
+	# long running
+	# do something other
+
 	win=tk.Tk()
 	
 	surface = Surface(win)
 	win.protocol('WM_DELETE_WINDOW', close_window)
 	win.mainloop()
-	
+	endtime = datetime.datetime.now()
+	print(endtime - starttime).seconds
+	print(1);
